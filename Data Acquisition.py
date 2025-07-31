@@ -2,9 +2,9 @@ import serial
 import csv
 import datetime
 
-arduino = serial.Serial('COM4', 9600, timeout=1)
+arduino = serial.Serial('COM12', 9600, timeout=1)
 
-with open('ligero agarre2.csv', mode='w', newline='') as archivo:
+with open('contraccion3.csv', mode='w', newline='') as archivo:
     escritor_csv = csv.writer(archivo)
     escritor_csv.writerow(["Timestamp", "Valor Analogico"])  # Escribe el encabezado
 

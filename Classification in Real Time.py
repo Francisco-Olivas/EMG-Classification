@@ -8,9 +8,9 @@ from scipy.signal import butter, filtfilt
 VENTANA = 100
 TRASLAPE = 50
 FS = 1000  
-PORT = 'COM8' 
+PORT = 'COM12' 
 BAUDRATE = 9600
-MODELO_PATH = 'modelo_ann.pkl'
+MODELO_PATH = 'modelo_svm.pkl'
 
 # FILTRO PASA BANDA
 def butter_bandpass_filter(data, lowcut=20.0, highcut=450.0, fs=1000.0, order=4):

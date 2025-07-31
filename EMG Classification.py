@@ -62,22 +62,18 @@ traslape = 50
 #X4, y4 = cargar_dataset('ligero agarre.csv', 3, ventana=ventana, traslape=traslape)
 #X42, y42 = cargar_dataset('ligero agarre2.csv', 3, ventana=ventana, traslape=traslape)
 
-X1, y1 = cargar_dataset('relajacion1.csv', 0, ventana=ventana, traslape=traslape)
-X2, y2 = cargar_dataset('medio agarre.csv', 1, ventana=ventana, traslape=traslape)
-X22, y22 = cargar_dataset('medio agarre2.csv', 1, ventana=ventana, traslape=traslape)
-X3, y3 = cargar_dataset('intenso1.csv', 2, ventana=ventana, traslape=traslape)
-X32, y32 = cargar_dataset('intenso2.csv', 2, ventana=ventana, traslape=traslape)
-X33, y33 = cargar_dataset('intenso3.csv', 2, ventana=ventana, traslape=traslape)
-X34, y34 = cargar_dataset('intenso4.csv', 2, ventana=ventana, traslape=traslape)
-X35, y35 = cargar_dataset('intenso5.csv', 2, ventana=ventana, traslape=traslape)
-#X4, y4 = cargar_dataset('ligero agarre.csv', 0, ventana=ventana, traslape=traslape)
-#X42, y42 = cargar_dataset('ligero agarre2.csv', 0, ventana=ventana, traslape=traslape)
+X1, y1 = cargar_dataset('relajacion.csv', 0, ventana=ventana, traslape=traslape)
+X2, y2 = cargar_dataset('indice.csv', 1, ventana=ventana, traslape=traslape)
+X3, y3 = cargar_dataset('contraccion.csv', 2, ventana=ventana, traslape=traslape)
+X32, y32 = cargar_dataset('contraccion2.csv', 2, ventana=ventana, traslape=traslape)
+X33, y33 = cargar_dataset('contraccion3.csv', 2, ventana=ventana, traslape=traslape)
+
 
 # UNIR Y SINCRONIZAR DATOS
 #X = X1 + X2 + X22 + X3 + X32 + X33 + X34 + X35 + X4 + X42
 #y = y1 + y2 + y22 + y3 + y32 + y33 + y34 + y35 + y4 + y42
-X = X1 + X2 + X22 + X3 + X32 + X33 + X34 + X35
-y = y1 + y2 + y22+ y3 + y32 + y33 + y34 + y35
+X = X1 + X2 + X3 + X32 + X33
+y = y1 + y2 + y3 + y32 + y33
 X, y = sincronizar_datos(X, y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
@@ -144,7 +140,7 @@ print(rf_search.best_params_)
 rf_pred = rf_search.predict(X_test)
 print(confusion_matrix(y_test, rf_pred))
 #print(classification_report(y_test, rf_pred, target_names=["Relajación", "Media", "Intensa", "Ligero"]))
-print(classification_report(y_test, rf_pred, target_names=["Relajación", "Agarre", "Intensa"]))
+print(classification_report(y_test, rf_pred, target_names=["Relajación", "Indice", "Cerrar"]))
 
 # RESULTADOS SVM
 print("\nMejor modelo SVM:")
@@ -152,7 +148,7 @@ print(svm_search.best_params_)
 svm_pred = svm_search.predict(X_test)
 print(confusion_matrix(y_test, svm_pred))
 #print(classification_report(y_test, svm_pred, target_names=["Relajación", "Media", "Intensa", "Ligero"]))
-print(classification_report(y_test, svm_pred, target_names=["Relajación", "Agarre", "Intensa"]))
+print(classification_report(y_test, svm_pred, target_names=["Relajación", "Indice", "Cerrar"]))
 
 # RESULTADOS ANN
 print("\nMejor modelo ANN:")
@@ -160,7 +156,7 @@ print(ann_search.best_params_)
 ann_pred = ann_search.predict(X_test)
 print(confusion_matrix(y_test, ann_pred))
 #print(classification_report(y_test, ann_pred, target_names=["Relajación", "Media", "Intensa", "Ligero"]))
-print(classification_report(y_test, ann_pred, target_names=["Relajación", "Agarre", "Intensa"]))
+print(classification_report(y_test, ann_pred, target_names=["Relajación", "Indice", "Cerrar"]))
 
 # GUARDAR MODELOS
 joblib.dump(rf_search.best_estimator_, "modelo_random_forest.pkl")
